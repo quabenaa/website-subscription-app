@@ -20,4 +20,9 @@ class WebsiteSubscription extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopeFindByWebsite($query, $website)
+    {
+        return $query->where('website_id',$website);
+    }
 }

@@ -18,6 +18,8 @@ Route::post('/posts', function (Request $request) {
 
     $post = \App\Models\Post::create($request->all());
 
+    event(new \App\Events\PostCreated($post));
+
     return json_encode(['id' => $post->id,
         'title' => $post->title,
         'description' => $post->description,
