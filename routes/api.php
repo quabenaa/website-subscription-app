@@ -1,9 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\WebsiteController;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\PostController;
-use App\Http\Controllers\WebsiteController;
 
 /*
 |--------------------------------------------------------------------------

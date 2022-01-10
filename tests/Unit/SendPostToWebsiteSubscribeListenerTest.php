@@ -46,5 +46,4 @@ class SendPostToWebsiteSubscribeListenerTest extends TestCase
         (new SendPostToWebsiteSubscribers())->handle(new PostCreated($post));
         Bus::assertDispatched(SendEmailToSubscribersJob::class);
     }
-
 }
