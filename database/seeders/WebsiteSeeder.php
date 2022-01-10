@@ -14,6 +14,6 @@ class WebsiteSeeder extends Seeder
      */
     public function run()
     {
-        Website::factory()->create();
+        Website::factory(10)->create();
     }
 }

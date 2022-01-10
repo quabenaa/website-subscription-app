@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Mail\SendPostToWebsiteSubscribers;
+use App\Mail\SendPost;
 use App\Models\Post;
 use App\Models\WebsiteSubscription;
 use Illuminate\Bus\Queueable;
@@ -35,7 +35,7 @@ class SendEmailToSubscribersJob implements ShouldQueue
      */
     public function handle()
     {
-        $email = new SendPostToWebsiteSubscribers($this->post);
+        $email = new SendPost($this->post);
         $subscribers = WebsiteSubscription::query()
                         ->findByWebsite($this->post->website)
                         ->get();

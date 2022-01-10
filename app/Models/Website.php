@@ -9,6 +9,8 @@ class Website extends Model
 {
     use HasFactory;
 
+    protected $hidden = ['created_at', 'updated_at'];
+
     public function subscriptions()
     {
         return $this->hasMany(WebsiteSubscription::class);

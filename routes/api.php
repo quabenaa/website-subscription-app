@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\PostController;
+use App\Http\Controllers\WebsiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,31 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/posts', function (Request $request) {
+Route::get('/websites', [WebsiteController::class, 'index']);
+Route::post('/websites/subscriptions', [WebsiteController::class, 'subscription']);
 
-    $post = \App\Models\Post::create($request->all());
+Route::get('/posts', [PostController::class, 'index']);
+Route::post('/posts', [PostController::class, 'store']);
 
-    event(new \App\Events\PostCreated($post));
-
-    return json_encode(['id' => $post->id,
-        'title' => $post->title,
-        'description' => $post->description,
-        'body' => $post->body,
-        'website_id' => $post->website_id]);
-});
-
-
-Route::post('/websites/subscriptions', function (Request $request) {
-
-    $subscription = \App\Models\WebsiteSubscription::create($request->all());
-
-    return json_encode(
-        [
-            'message' => 'User has successfully subscribe to '.$subscription->website->name,
-            'payload' =>
-                [
-                    'user_id' => $subscription->user_id,
-                    'website_id' => $subscription->website_id
-                ]
-        ]);
-});

@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendPostToWebsiteSubscribers extends Mailable
+class SendPost extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -34,6 +34,7 @@ class SendPostToWebsiteSubscribers extends Mailable
      */
     public function build()
     {
-        return $this->view('email.post_subscriber', ['post'=>$this->post]);
+        return $this->view('email.post_subscriber')
+                    ->with(['post'=>$this->post]);
     }
 }
